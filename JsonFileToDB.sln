@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonFileToDB", "JsonFileToDB\JsonFileToDB.csproj", "{D3BFC9A7-0515-4F50-A997-81E2713EFD02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProj", "TestProj\TestProj.csproj", "{59FCF843-57EC-4502-A44E-484461D43C65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D3BFC9A7-0515-4F50-A997-81E2713EFD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3BFC9A7-0515-4F50-A997-81E2713EFD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3BFC9A7-0515-4F50-A997-81E2713EFD02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59FCF843-57EC-4502-A44E-484461D43C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59FCF843-57EC-4502-A44E-484461D43C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59FCF843-57EC-4502-A44E-484461D43C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59FCF843-57EC-4502-A44E-484461D43C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
