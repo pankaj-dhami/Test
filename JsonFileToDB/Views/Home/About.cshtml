@@ -1,0 +1,124 @@
+﻿@model IEnumerable<JsonFileToDB.Models.ComparisonViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<script>
+    $(document).ready(function () {
+
+
+       
+
+        //var grid = $("#grid-data").bootgrid({
+        //    ajax: true,
+        //    post: function () {
+        //        return {
+        //            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+        //        };
+        //    },
+        //    url: "/Home/GetComparisionData",
+        //    formatters: {
+        //        "commands": function (column, row) {
+        //            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+        //                "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+        //        }
+        //    }
+        //}).on("loaded.rs.jquery.bootgrid", function () {
+        //    /* Executes after data is loaded and rendered */
+        //    grid.find(".command-edit").on("click", function (e) {
+        //        alert("You pressed edit on row: " + $(this).data("row-id"));
+        //    }).end().find(".command-delete").on("click", function (e) {
+        //        alert("You pressed delete on row: " + $(this).data("row-id"));
+        //    });
+        //});
+
+
+        function ChangeStatus(accept, fileId) {
+
+            $.ajax({
+                url: '/Home/ChangeStatus',
+                data: {
+                    accept: accept,
+                    FileID: fileId
+                },
+                type: 'GET',
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                success: function (data) {
+                    $('#status_' + fileId).html(data);
+                    alert("New Status is " + data);
+                }
+
+            });
+        }
+        $('.changestatus').click(function () {
+
+
+            var id = $(this).attr('id');
+            var accept = id.split('_')[0];
+            var fileId = id.split('_')[1];
+            ChangeStatus(accept, fileId);
+
+        });
+
+    });
+
+</script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>About</title>
+</head>
+<body>
+
+    <table id="grid-basic" class="table table-condensed table-hover table-striped">
+        <tr>
+        
+            <th data-column-id="UnoptimizedFile">
+                @Html.DisplayNameFor(model => model.UnOptimizedFilePath)
+            </th>
+            <th data-column-id="OptimizedFile">
+                @Html.DisplayNameFor(model => model.OptimizedFilePath)
+            </th>
+            <th data-column-id="FileStatus">
+                @Html.DisplayNameFor(model => model.FileStatus)
+            </th>
+            <th data-column-id="IsZip">
+                @Html.DisplayNameFor(model => model.IsZipFile)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.HiddenFor(modelItem => item.FileId)
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnOptimizedFilePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OptimizedFilePath)
+                </td>
+                <td>
+                    <div id="status_@item.FileId">
+                        @Html.DisplayFor(modelItem => item.FileStatus)
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsZipFile)
+                </td>
+                <td>
+                    <input type="button" id="true_@item.FileId" class="changestatus" value="Accept" />
+                    <input type="button" id="false_@item.FileId" class="changestatus" value="Reject" />
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+
+
+</html>
